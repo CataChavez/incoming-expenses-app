@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "income-expense-app-40132": {
+      "hosting": {
+        "accountingApp": [
+          "income-expense-app-40132"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "income-expense-app-40132"
+  }
+}
