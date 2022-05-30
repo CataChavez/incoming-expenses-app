@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
       this.myForm.markAllAsTouched();
     }
     this.spinner.show();
-    const { name, email, password } = this.myForm.value;
+    const {name, email, password } = this.myForm.value;
     this.authService.createUser(name, email, password)
       .then(credentials => {
           this.spinner.hide()
