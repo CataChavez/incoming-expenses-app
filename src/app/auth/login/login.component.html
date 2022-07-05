@@ -34,8 +34,19 @@
                             (click)="loginUser()" 
                             type="submit" 
                             class="btn btn-primary submit-btn btn-block" 
-                            [disabled]="!loginForm.valid">
-                            Login</button>
+                            [disabled]="!loginForm.valid"
+                            *ngIf="!loading"
+                            >
+                            Login
+                        </button>
+                            <button                         
+                            type="button" 
+                            class="btn btn-primary submit-btn btn-block" 
+                            [disabled]="true"
+                            *ngIf="loading"
+                            >
+                            <i class="fa fa-spin fa-sync"></i>
+                            Espere...</button>
                         </div>
 
 
