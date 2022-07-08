@@ -30,7 +30,6 @@ export class DetailComponent implements OnInit, OnDestroy{
     this.store.select('incomingExpenses')
       .subscribe(({ items }) => {
         this.incomingExpenses = items;
-        console.log(items);
       })  
   }
 
