@@ -8,6 +8,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { GlobalState } from '../app.reducer';
 import * as authActions from '../auth/auth.action';
+import { unSetItems } from '../incoming-expenses/incoming-expenses.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class AuthService {
   private itemDoc: any;
   item!: Observable<Item>;
   userSubscription!: Subscription;
+  private _user!: User;
+
+  get user() {
+    return { ... this._user }
+  }
 
   constructor(
     public auth: AngularFireAuth,
@@ -29,11 +35,14 @@ export class AuthService {
       if (user) {
         this.userSubscription = this.firestore.doc(`${user.uid}/user`).valueChanges().subscribe((firestoreUser: any) => {
           const user = User.fromFirebase(firestoreUser);
+          this._user = user;
           this.store.dispatch(authActions.setUser({ user }));
         })  
       } else {
+        this._user = (null as unknown) as User;
         this.store.dispatch(authActions.unSetUser());
         this.userSubscription.unsubscribe();
+        this.store.dispatch(unSetItems());
       }
     })
   }

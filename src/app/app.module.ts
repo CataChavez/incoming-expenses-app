@@ -27,6 +27,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { StoreModule } from '@ngrx/store';
 import { globalReducer } from './app.reducer';
 import { environment } from '../environments/environment';
+import { orderItemsPipe } from './pipes/order-of-Items.pipe';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { environment } from '../environments/environment';
     FooterComponent,
     NavbarComponent,
     SidebarComponent,
+    orderItemsPipe,
   ],
   imports: [
     //provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -50,6 +53,7 @@ import { environment } from '../environments/environment';
     SweetAlert2Module.forRoot(),
     BrowserAnimationsModule,
     NgxSpinnerModule,
+    NgChartsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     provideAnalytics(() => getAnalytics()),

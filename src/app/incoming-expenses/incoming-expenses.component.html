@@ -7,16 +7,28 @@
                     Especifique el monto y el tipo
                 </p>
 
-                <form>
+                <form [formGroup]="incomingExpensesForm" autocomplete="off" >
 
                     <div class="form-group">
                         <label>Descripción</label>
-                        <input type="text" class="form-control" placeholder="Descripción" name="descripcion">
+                        <input 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="Descripción" 
+                            name="description" 
+                            formControlName="description"
+                            >
                     </div>
 
                     <div class="form-group">
                         <label>Monto</label>
-                        <input type="number" class="form-control" placeholder="Monto" name="monto">
+                        <input 
+                            type="number" 
+                            class="form-control" 
+                            placeholder="Monto" 
+                            name="amount"
+                            formControlName="amount"
+                            >
                         <p>
                             Debe de ser un monto positivo
                         </p>
@@ -25,15 +37,31 @@
                     <div class="form-group">
                         <label>Tipo</label>
                         <br>
-                        <button type="button" class="btn btn-primary btn-block">Ingreso</button>
-                        <!-- <button type="button" class="btn btn-warning btn-block">Egreso</button> -->
+                        <button *ngIf="type === 'incoming'" (click)="type = 'expenses'" type="button" class="btn btn-primary btn-block" >Ingreso</button>
+                        <button *ngIf="type === 'expenses'" (click)="type = 'incoming'" type="button" class="btn btn-warning btn-block">Egreso</button>
                     </div>
 
                     <hr>
-                    <button type="button" class="btn btn-success mr-2">
+                    <button 
+                        type="button" 
+                        class="btn btn-success mr-2"
+                        (click)="save()"
+                        [disabled]="!incomingExpensesForm.valid"
+                        *ngIf="!loading"
+                        >
                         <i class="fa fa-save"></i>
                         Agregar
                     </button>
+                    <button 
+                        type="button" 
+                        class="btn btn-primary submit-btn btn-block" 
+                        [disabled]="true" 
+                        *ngIf="loading">
+                        <i class="fa fa-spin fa-sync"></i>
+                        Guardando...
+                    </button>
+                        
+                   
 
                     <!-- 
                 <button disabled class="btn btn-success mr-2">
