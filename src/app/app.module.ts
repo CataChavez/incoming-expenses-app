@@ -5,16 +5,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { IncomingExpensesComponent } from './incoming-expenses/incoming-expenses.component';
-import { StatisticsComponent } from './incoming-expenses/statistics/statistics.component';
-import { DetailComponent } from './incoming-expenses/detail/detail.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { provideAnalytics,getAnalytics} from '@angular/fire/analytics';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -27,33 +17,21 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { StoreModule } from '@ngrx/store';
 import { globalReducer } from './app.reducer';
 import { environment } from '../environments/environment';
-import { orderItemsPipe } from './pipes/order-of-Items.pipe';
-import { NgChartsModule } from 'ng2-charts';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    DashboardComponent,
-    IncomingExpensesComponent,
-    StatisticsComponent,
-    DetailComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent,
-    orderItemsPipe,
   ],
   imports: [
     //provideFirebaseApp(() => initializeApp(environment.firebase)),
     CommonModule,
     BrowserModule,
+    AuthModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     SweetAlert2Module.forRoot(),
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    NgChartsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     provideAnalytics(() => getAnalytics()),

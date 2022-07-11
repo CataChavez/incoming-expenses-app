@@ -23,7 +23,7 @@ export class DetailComponent implements OnInit, OnDestroy{
   ) { }
 
   ngOnDestroy(): void { 
-    this.incExpSubscription.unsubscribe();
+    this.incExpSubscription?.unsubscribe();
   }
 
   ngOnInit(): void {
